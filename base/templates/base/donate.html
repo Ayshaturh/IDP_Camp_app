@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block title %}Donate{% endblock %}
+
+{% block content %}
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    .hero-section {
+      background-color: #a8d0e6;
+      padding: 2rem;
+      text-align: center;
+    }
+    .stats-section {
+      background-color: #7bc9e8;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    .donate-button {
+      background-color: #343a40; 
+      color: white; 
+      padding: 1rem 2rem; 
+      border: none; 
+      cursor: pointer;
+      transition: background-color 0.3s ease; 
+      display: inline-block; 
+    }
+    .donate-button:hover {
+      background-color: white; 
+      color: #343a40; 
+    }
+    .donate-img {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row hero-section">
+      <div class="col-md-6">
+        <h1>TOGETHER, WE WILL MAKE A DIFFERENCE.</h1>
+        <p>Your generosity can transform lives. By donating to our Internally Displaced Persons (IDP) camp, you provide essential resources and support to those who need it most. Every contribution, no matter the size, helps us offer shelter, food, healthcare, education, and a sense of belonging to displaced individuals and families.</p>
+        <h2>Why Donate?</h2>
+        <p><strong>Immediate Impact:</strong> Your donation provides critical aid where it’s needed most.</p>
+        <p><strong>Sustainable Change:</strong> Support long-term programs that help individuals rebuild their lives.</p>
+        <p><strong>Transparency:</strong> We ensure your donations are used effectively and provide regular updates on how funds are spent.</p>
+        <button type="button" class="btn donate-button" data-toggle="modal" data-target="#confirmationModal">
+            DONATE NOW
+        </button>
+      </div>
+      <div class="col-md-6">
+        <div style="background-color: #ddd; height: 100%; display: flex; align-items: center; justify-content: center;">
+          <img src="{% static 'donation.jpg' %}" alt="About Us Image" class="donate-img">
+        </div>
+      </div>
+    </div>
+
+    <div class="row stats-section">
+      <div class="col-md-4">
+        <h3>200+</h3>
+        <p>People Helped</p>
+      </div>
+      <div class="col-md-4">
+        <h3>500+</h3>
+        <p>Volunteers</p>
+      </div>
+      <div class="col-md-4">
+        <h3>5</h3>
+        <p>IDP Camps in Abuja</p>
+      </div>
+    </div>
+
+    <div class="modal fade" id="confirmationModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Donate</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal Body -->
+          <div class="modal-body">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-8">
+                  <div class="card mt-6">
+                    <div class="card-header text-center">
+                      <h4>Donate</h4>
+                    </div>
+                    <div class="card-body">
+                      <form id="donationForm" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          {{ form.donate_type.label_tag }}
+                          {{ form.donation_type }}
+                        </div>
+                        <div class="form-group">
+                          {{ form.description.label_tag }}
+                          {{ form.description }}
+                        </div>
+                        <div class="form-group">
+                          {{ form.amount.label_tag }}
+                          {{ form.amount }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">DONATE</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('donationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        var isAuthenticated = {{ request.user.is_authenticated|yesno:"true,false" }};
+        
+        if (!isAuthenticated) {
+            window.location.href = "{% url 'login' %}?next={{ request.path }}"; // Redirect to login with next parameter
+        } else {
+            this.submit(); // Submit the form if the user is authenticated
+        }
+    });
+</script>
+
+</body>
+{% endblock content%}

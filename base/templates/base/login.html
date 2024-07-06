@@ -1,0 +1,55 @@
+<!-- templates/registration/login.html -->
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Login{% endblock %}
+{% crispy form %}
+{% block content %}
+<style>
+      .hero-section {
+
+      background-color: #a8d0e6;
+        padding: 7%;
+    
+      
+      
+    }
+    body {
+            background-color:#a8d0e6; /* Replace with your desired background color */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+</style>
+<body>
+    <div class="container-fluid ">
+        <div class="row justify-content-center hero-section">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header text-center">
+                        <h4>Login to IDP APP</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.username.label_tag }}
+                                {{ form.username }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.password.label_tag }}
+                                {{ form.password }}
+                            </div>
+                            <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+                            <p>Forgot Password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+{% endblock %}

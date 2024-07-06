@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .contact-section {
+            padding: 2rem;
+            background-color: #f4f4f4;
+        }
+        .contact-section h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .faq-section {
+            padding: 2rem;
+            background-color: #ffffff;
+        }
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-item h4 {
+            cursor: pointer;
+            color: #7bc9e8;
+            transition: color 0.3s ease;
+        }
+        .faq-item h4:hover {
+            color: #343a40;
+        }
+        .faq-item p {
+            display: none;
+            margin-top: 0.5rem;
+        }
+        .contact-info {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .contact-info h2 {
+            margin-bottom: 1rem;
+        }
+        .contact-info p {
+            margin: 0.5rem 0;
+        }
+        .contact-form {
+            margin-top: 2rem;
+        }
+        .contact-form h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .contact-form form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-form form .form-group {
+            margin-bottom: 1rem;
+        }
+        .contact-form form .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .contact-form form .form-group input, 
+        .contact-form form .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .contact-form form .form-group button {
+            padding: 0.75rem 1.5rem;
+            background-color: #343a40;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form form .form-group button:hover {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-section">
+        <h1>Contact Us</h1>
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>Phone: (123) 456-7890</p>
+            <p>Email: contact@idpcamp.org</p>
+            <p>Address: 123 IDP Camp Lane, Abuja, Nigeria</p>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h4>What is the purpose of the IDP camp?</h4>
+            <p>The IDP camp provides shelter, food, healthcare, and education to individuals and families displaced by conflict, natural disasters, and other crises.</p>
+        </div>
+        <div class="faq-item">
+            <h4>How can I donate to the IDP camp?</h4>
+            <p>You can donate through our website by clicking on the "Donate Now" button. We accept various forms of donations including monetary contributions and supplies.</p>
+        </div>
+        <div class="faq-item">
+            <h4>How can I volunteer at the IDP camp?</h4>
+            <p>If you're interested in volunteering, please contact us through the form below or send an email to volunteer@idpcamp.org.</p>
+        </div>
+        <div class="faq-item">
+            <h4>How are donations used?</h4>
+            <p>Donations are used to provide essential resources such as food, shelter, healthcare, and education to the displaced individuals at our camp.</p>
+        </div>
+        <div class="faq-item">
+            <h4>How can I contact the IDP camp for more information?</h4>
+            <p>You can contact us by phone at (123) 456-7890 or by email at contact@idpcamp.org. You can also use the contact form below.</p>
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <h2>Contact Form</h2>
+        <form method="post" action="{% url 'contact' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var faqItems = document.querySelectorAll('.faq-item h4');
+            faqItems.forEach(function(faq) {
+                faq.addEventListener('click', function() {
+                    var answer = this.nextElementSibling;
+                    answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+{% endblock %}

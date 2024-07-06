@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+        .hero-section {
+            position: relative;
+            background: url('{% static "base/people.jpg" %}') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .btn-custom {
+            background-color: white;
+            color: #343a40;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #343a40;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #343a40;
+            color: white;
+        }
+        .about-section, .stats-section, .footer {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .about-section {
+            background-color: #f4f4f4;
+        }
+        .stats-section {
+            background-color: #7bc9e8;
+            color: white;
+        }
+        .stats-section h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem 0;
+        }
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer .column {
+            flex: 1;
+            margin: 1rem;
+        }
+        .footer .column h4 {
+            margin-bottom: 1rem;
+        }
+        .footer .column ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer .column ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer .column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        .footer .column ul li a:hover {
+            color: #333;
+            background-color: white;
+            padding: 0.1rem 0.3rem;
+        }
+        .footer .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .footer .social-icons a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        .footer .social-icons a:hover {
+            color: #333;
+            background-color: white;
+            padding: 0.2rem;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>WELCOME TO IDP CAMP</h1>
+        <p>Providing a safe haven and essential resources for those displaced by conflict, natural disasters, and other crises.</p>
+        <a href="{% url 'about' %}" class="btn btn-custom">Learn More</a>
+    </div>
+</div>
+<div class="about-section">
+    <h2>About Us</h2>
+    <p>Welcome to our Internally Displaced Persons (IDP) Camp website. Our mission is to provide a safe haven and essential resources for those displaced by conflict, natural disasters, and other crises.</p>
+    <a href="{% url 'donate' %}" class="btn btn-custom">Donate Now</a>
+</div>
+<div class="stats-section">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>200+</h3>
+            <p>People Helped</p>
+        </div>
+        <div class="col-md-4">
+            <h3>500+</h3>
+            <p>Volunteers</p>
+        </div>
+        <div class="col-md-4">
+            <h3>5</h3>
+            <p>IDP Camps in Abuja</p>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="column">
+            <h4>About Us</h4>
+            <ul>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Our Team</a></li>
+                <li><a href="#">Our Mission</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h4>Support</h4>
+            <ul>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'contact' %}">FAQ</a></li>
+                <li><a href="{% url 'contact' %}">Help</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

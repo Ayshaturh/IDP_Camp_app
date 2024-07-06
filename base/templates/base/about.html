@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<style>
+    .section-title {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+        color: #343a40; 
+    }
+    .about-us-img {
+        max-width: 100%;
+        height: auto;
+    }
+    .about-us {
+        background-color: #a8d0e6;
+        padding: 4% 8%; 
+    }
+    .about-us-txt {
+        margin-left: 20px; 
+        margin-bottom: 30px; 
+    }
+    .mission-vision {
+        margin-left: 40px; 
+        margin-bottom: 30px;
+    }
+    .get-involved {
+        margin-left: 60px; 
+        margin-bottom: 30px;
+    }
+</style>
+
+<div class="container-fluid about-us">
+    <div class="row align-items-center">
+        <div class="col-md-6 about-us-txt">
+            <h2 class="section-title">About Us</h2>
+            <p>Welcome to our Internally Displaced Persons (IDP) Camp website. Our mission is to provide a safe haven and essential resources for those displaced by conflict, natural disasters, and other crises.</p>
+        </div>
+
+        <div class="col-md-5">
+            <img src="{% static 'about.jpg' %}" alt="About Us Image" class="about-us-img">
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mission-vision">
+        <div class="col-md-6">
+            <h2 class="section-title">Our Mission</h2>
+            <p>Our mission is to provide a safe and supportive environment for internally displaced persons offering essential resources and services to help rebuild their lives.</p>
+        </div>
+        <div class="col-md-6">
+            <h2 class="section-title">Our Vision</h2>
+            <p>Our vision is to create a world where internally displaced persons are not only provided with immediate relief and support but are also empowered to rebuild their lives and communities.</p>
+        </div>
+    </div>
+
+    <div class="row get-involved">
+        <div class="col-md-12">
+            <h2 class="section-title">Get Involved</h2>
+            <p>Join us in making a positive impact in the lives of many. Whether you volunteer, donate, or spread awareness, your contribution matters.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

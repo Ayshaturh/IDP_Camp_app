@@ -1,0 +1,17 @@
+<!-- adoption/templates/adoption/donation_form.html -->
+{% extends 'base.html' %}
+
+
+
+{% block title %}Make a Donation {% endblock %}
+
+{% block content %}
+
+<body>
+    <h1>Make a Donation</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block">Donate</button>
+    </form>
+    {% endblock %}
